@@ -1,0 +1,7 @@
+linters:
+  enable:
+    - errcheck      # catches ignored errors
+    - gosimple      # simplify code suggestions
+    - govet         # correctness checks
+    - staticcheck   # advanced static analysis
+    - unused        # unused code
