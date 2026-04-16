@@ -1,18 +1,25 @@
 package handler
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
-	"peakly/internal/service"
+	"peakly/internal/model"
 
 	"github.com/go-chi/chi/v5"
 )
 
-type TaskHandler struct {
-	service service.TaskService
+type taskService interface {
+	List(ctx context.Context) ([]*model.Task, error)
+	Create(ctx context.Context, title string) (*model.Task, error)
+	GetByID(ctx context.Context, id string) (*model.Task, error)
 }
 
-func NewTaskHandler(service service.TaskService) *TaskHandler {
+type TaskHandler struct {
+	service taskService
+}
+
+func NewTaskHandler(service taskService) *TaskHandler {
 	return &TaskHandler{service: service}
 }
 

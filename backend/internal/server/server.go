@@ -12,9 +12,10 @@ type Server struct {
 	taskHandler *handler.TaskHandler
 }
 
-func New() *Server {
+func NewServer(taskHandler *handler.TaskHandler) *Server {
 	s := &Server{
-		router: chi.NewRouter(),
+		router:      chi.NewRouter(),
+		taskHandler: taskHandler,
 	}
 	s.registerRoutes()
 	return s
